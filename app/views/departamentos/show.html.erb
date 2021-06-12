@@ -1,4 +1,11 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+  <div class="alert alert-success alert-dismissible">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+<% end %>
 
 <h1><%= @departamento.nome %></h1>
 
@@ -18,5 +25,5 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_departamento_path(@departamento), class:"btn btn-default" %>
-<%= link_to 'Back', departamentos_path, class:"btn btn-default" %>
+<%= link_to 'Editar', edit_departamento_path(@departamento), class:"btn btn-default" %>
+<%= link_to 'Voltar', departamentos_path, class:"btn btn-default" %>
