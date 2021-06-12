@@ -18,7 +18,7 @@ class ProdutosController < ApplicationController
             flash[:notice] = "Produto criado com sucesso"
             redirect_to root_path
         else
-            render_new
+            renderiza :new
         end
     end
 
@@ -28,7 +28,7 @@ class ProdutosController < ApplicationController
     end
 
     def edit
-        render_new
+        renderiza :edit
     end
 
     def update
@@ -36,7 +36,7 @@ class ProdutosController < ApplicationController
             flash[:notice] = "Produto atualizado com sucesso"
             redirect_to root_url
         else
-            render_new
+            renderiza :edit
         end
     end
 
@@ -44,6 +44,9 @@ class ProdutosController < ApplicationController
         @nome = params[:nome]
         @produtos = Produto.where "nome like ?", "%#{@nome}%"
     end
+
+
+    private
 
     def produto_params
         params.require(:produto).permit(:nome, :descricao,:departamento_id, :preco, :quantidade)
@@ -53,9 +56,9 @@ class ProdutosController < ApplicationController
         @produto = Produto.find(params[:id])
     end
 
-    def render_new
+    def renderiza(view)
         @departamentos = Departamento.all
-        render :new
+        render view
     end
 
 end
